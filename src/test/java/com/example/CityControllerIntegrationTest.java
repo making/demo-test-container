@@ -23,7 +23,7 @@ import com.fasterxml.jackson.databind.JsonNode;
 		"/db/migration/V1.1.0__add-initial-data.sql" }, config = @SqlConfig(encoding = "UTF-8"))
 public class CityControllerIntegrationTest {
 	@ClassRule
-	public static GenericContainer postgres = PostgresInitializer.container();
+	public static GenericContainer postgres = PostgresInitializer.initContainer();
 
 	@Autowired
 	TestRestTemplate restTemplate;

@@ -20,7 +20,7 @@ public class PostgresInitializer
 						postgres.getContainerIpAddress(), postgres.getMappedPort(5432)));
 	}
 
-	public static GenericContainer container() {
+	public static GenericContainer initContainer() {
 		return postgres;
 	}
 }
