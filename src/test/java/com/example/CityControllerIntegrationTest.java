@@ -2,28 +2,22 @@ package com.example;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
-import org.junit.ClassRule;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.web.client.TestRestTemplate;
-import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.jdbc.Sql;
 import org.springframework.test.context.jdbc.SqlConfig;
 import org.springframework.test.context.junit4.SpringRunner;
-import org.testcontainers.containers.GenericContainer;
 
 import com.fasterxml.jackson.databind.JsonNode;
 
 @RunWith(SpringRunner.class)
 @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
-@ContextConfiguration(classes = DemoTestContainerApplication.class, initializers = PostgresInitializer.class)
 @Sql(scripts = { "/sql/drop-tables.sql", "/db/migration/V1.0.0__add-schema.sql",
 		"/db/migration/V1.1.0__add-initial-data.sql" }, config = @SqlConfig(encoding = "UTF-8"))
 public class CityControllerIntegrationTest {
-	@ClassRule
-	public static GenericContainer postgres = PostgresInitializer.initContainer();
 
 	@Autowired
 	TestRestTemplate restTemplate;
