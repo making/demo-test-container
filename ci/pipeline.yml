@@ -9,6 +9,7 @@ resources:
   type: git
   source:
     uri: https://github.com/making/demo-test-container
+    branch: docker-compose
 - name: m2
   type: docker-image
   source:
@@ -52,7 +53,9 @@ jobs:
           docker images
 
           cd repo
+          docker-compose up -d
           mvn test -Dmaven.repo.local=../m2/rootfs/opt/m2
+          docker-compose down
 - name: init-m2
   plan:
     - aggregate:
